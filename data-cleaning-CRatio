@@ -1,3 +1,4 @@
+# Importing modules for this project
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -5,15 +6,11 @@ import matplotlib.pyplot as plt
 df_raw = pd.read_csv('CR_CS_data.csv')
 print(df_raw.info())  # Use .shape method to simply get the (row, col) information
 
-# Read cleaned Excel data using pandas into a DataFrame
-#df_cleaned = pd.read_excel('CR_CS_data_cleaned.xlsx')
-#print(df_cleaned.info())
-
 # Drop all rows with any missing value
 df_no_missing = df_raw.dropna()
 print(df_no_missing.info())
 
-# Create a DataFrame only including pass parts (SBIN = 0)
+# Create a DataFrame only including passing parts (SBIN = 0)
 df_cleaned = df_no_missing[df_no_missing.SBIN == 0]
 print(df_cleaned.info())
 
@@ -31,7 +28,7 @@ plt.scatter(x, y, marker=',')
 plt.scatter(0.604878, 0.55861, marker=',', c='r')
 
 # To highlight multiple points, use lists as x and y
-#plt.scatter([0.604878, 0.601372], [0.55861, 0.558647], marker=',', c='r')
+# plt.scatter([0.604878, 0.601372], [0.55861, 0.558647], marker=',', c='r')
 
 # Specify axis labels and plot title
 plt.xlabel('COLOR RATIO_Center_R/Gr')
@@ -44,4 +41,3 @@ plt.ylim(0.5, 0.7)
 
 # Display the scatter plot
 plt.show()
-fdffdf
