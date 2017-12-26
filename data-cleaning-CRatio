@@ -1,0 +1,47 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Read raw csv data using pandas into a DataFrame
+df_raw = pd.read_csv('CR_CS_data.csv')
+print(df_raw.info())  # Use .shape method to simply get the (row, col) information
+
+# Read cleaned Excel data using pandas into a DataFrame
+#df_cleaned = pd.read_excel('CR_CS_data_cleaned.xlsx')
+#print(df_cleaned.info())
+
+# Drop all rows with any missing value
+df_no_missing = df_raw.dropna()
+print(df_no_missing.info())
+
+# Create a DataFrame only including pass parts (SBIN = 0)
+df_cleaned = df_no_missing[df_no_missing.SBIN == 0]
+print(df_cleaned.info())
+
+# Save cleaned data to csv
+df_cleaned.to_csv('CR_CS_cleaned.csv')
+
+# Specify x and y axes to plot
+x = df_cleaned[['LIGHTON_COLORRATIO_5BLOCKS_RGRATIO_0']]
+y = df_cleaned[['LIGHTON_COLORRATIO_5BLOCKS_BGRATIO_0']]
+
+# Create a scatter plot for the cleaned data
+plt.scatter(x, y, marker=',')
+
+# Highlight a specific point on plot
+plt.scatter(0.604878, 0.55861, marker=',', c='r')
+
+# To highlight multiple points, use lists as x and y
+#plt.scatter([0.604878, 0.601372], [0.55861, 0.558647], marker=',', c='r')
+
+# Specify axis labels and plot title
+plt.xlabel('COLOR RATIO_Center_R/Gr')
+plt.ylabel('COLOR RATIO_Center_B/Gb')
+plt.title('Color Ratio at Center')
+
+# Specify axis limits
+plt.xlim(0.5, 0.7)
+plt.ylim(0.5, 0.7)
+
+# Display the scatter plot
+plt.show()
+fdffdf
